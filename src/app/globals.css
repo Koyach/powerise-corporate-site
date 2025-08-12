@@ -1,10 +1,9 @@
+/* 1) Tailwind CSS を読み込み */
 @import "tailwindcss";
 
-/* フォント読み込み */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;600;700&display=swap');
-
-/* CSS変数でカラーパレットを定義 */
-:root {
+/* 2) Tailwind v4 の @theme でトークンを宣言（これがないと bg-dark-slate 等が生成されません） */
+@theme {
+  /* Colors */
   --color-deep-violet: #4C2A85;
   --color-rich-lavender: #907AD6;
   --color-gold: #FFD700;
@@ -12,45 +11,36 @@
   --color-off-white: #F0F0F0;
   --color-dark-slate: #1A1A2E;
   --color-white-lilac: #F8F7FC;
+
+  /* Fonts (Tailwind の font-sans などで利用可能にする) */
+  --font-sans: var(--font-noto-sans-jp), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* 基本スタイル */
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
+/* 3) サイト全体に適用するベーススタイル */
+@layer base {
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
 
-body {
-  font-family: 'Noto Sans JP', sans-serif;
-  color: var(--color-charcoal);
-  background-color: #ffffff;
-  line-height: 1.6;
-  font-weight: 400;
-}
+  body {
+    color: var(--color-charcoal);
+    background-color: #ffffff;
+    line-height: 1.6;
+    font-weight: 400;
+  }
 
-/* 見出しはInterフォントを使用 */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', sans-serif;
-}
+  /* 見出しはInterフォントを使用 */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
 
-/* タイポグラフィスケール（開発定義書準拠） */
-h1 {
-  font-size: 3rem; /* 48px */
-  font-weight: 700;
-}
+  /* タイポグラフィスケール */
+  h1 { font-size: 3rem; font-weight: 700; }
+  h2 { font-size: 2.25rem; font-weight: 700; }
+  h3 { font-size: 1.5rem; font-weight: 600; }
 
-h2 {
-  font-size: 2.25rem; /* 36px */
-  font-weight: 700;
-}
-
-h3 {
-  font-size: 1.5rem; /* 24px */
-  font-weight: 600;
-}
-
-/* 本文 */
-p, span, div {
-  font-size: 1rem; /* 16px */
-  font-weight: 400;
+  /* 本文 */
+  p, span, div { font-size: 1rem; font-weight: 400; }
 }

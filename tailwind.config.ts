@@ -18,8 +18,10 @@ const config: Config = {
         'white-lilac': '#F8F7FC',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        jp: ['"Noto Sans JP"', 'sans-serif'],
+        // Use next/font provided CSS variables
+        sans: ['var(--font-noto-sans-jp)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        jp: ['var(--font-noto-sans-jp)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },

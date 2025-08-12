@@ -6,11 +6,13 @@ import Footer from "@/components/layout/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
   variable: "--font-inter",
 });
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
   variable: "--font-noto-sans-jp",
 });
 
