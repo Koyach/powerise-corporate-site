@@ -1,12 +1,19 @@
 import { create } from 'zustand';
+import { subscribeWithSelector } from 'zustand/middleware';
 import { User } from 'firebase/auth';
 import { auth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from '@/lib/firebase';
+
+interface AuthError {
+  code: string;
+  message: string;
+}
 
 interface AuthState {
   user: User | null;
   isLoading: boolean;
   isAdmin: boolean;
   error: string | null;
+  isInitialized: boolean;
 }
 
 interface AuthActions {
@@ -21,12 +28,34 @@ interface AuthActions {
 
 type AuthStore = AuthState & AuthActions;
 
+const formatAuthError = (error: unknown): string => {
+  if (error instanceof Error) {
+    const message = error.message;
+    // Firebase Auth エラーコードに基づいた日本語メッセージ
+    if (message.includes('user-not-found')) {
+      return 'ユーザーが見つかりませんでした';
+    }
+    if (message.includes('wrong-password')) {
+      return 'パスワードが間違っています';
+    }
+    if (message.includes('invalid-email')) {
+      return '無効なメールアドレスです';
+    }
+    if (message.includes('too-many-requests')) {
+      return 'しばらく時間をおいてから再度お試しください';
+    }
+    return message;
+  }
+  return '認証エラーが発生しました';
+};
+
 export const useAuthStore = create<AuthStore>((set, get) => ({
   // 初期状態
   user: null,
   isLoading: true,
   isAdmin: false,
   error: null,
+  isInitialized: false,
 
   // アクション
   setUser: (user) => {
@@ -65,11 +94,12 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
       });
     } catch (error) {
       console.error('Login error:', error);
+      const errorMessage = formatAuthError(error);
       set({ 
         user: null,
         isAdmin: false,
         isLoading: false,
-        error: error instanceof Error ? error.message : 'ログインに失敗しました'
+        error: errorMessage
       });
       throw error;
     }
@@ -83,13 +113,15 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
         user: null,
         isAdmin: false,
         isLoading: false,
-        error: null 
+        error: null,
+        isInitialized: false
       });
     } catch (error) {
       console.error('Logout error:', error);
+      const errorMessage = formatAuthError(error);
       set({ 
         isLoading: false,
-        error: error instanceof Error ? error.message : 'ログアウトに失敗しました'
+        error: errorMessage
       });
     }
   },
@@ -109,28 +141,35 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
   initialize: () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        try {
+      try {
+        if (user) {
           const idTokenResult = await user.getIdTokenResult();
           const isAdmin = !!idTokenResult.claims.admin;
           set({ 
             user,
             isAdmin,
-            isLoading: false 
+            isLoading: false,
+            isInitialized: true,
+            error: null
           });
-        } catch (error) {
-          console.error('Error getting token:', error);
+        } else {
           set({ 
-            user,
+            user: null,
             isAdmin: false,
-            isLoading: false 
+            isLoading: false,
+            isInitialized: true,
+            error: null
           });
         }
-      } else {
+      } catch (error) {
+        console.error('Error during auth state change:', error);
+        const errorMessage = formatAuthError(error);
         set({ 
           user: null,
           isAdmin: false,
-          isLoading: false 
+          isLoading: false,
+          isInitialized: true,
+          error: errorMessage
         });
       }
     });

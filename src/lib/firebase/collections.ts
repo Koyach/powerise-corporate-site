@@ -140,6 +140,41 @@ export const getWorks = async (
   })) as Work[];
 };
 
+// Admin-specific work utilities
+export const updateWork = async (id: string, workData: Partial<Work>): Promise<void> => {
+  const docRef = doc(db, COLLECTIONS.WORKS, id);
+  const updateData: any = { ...workData };
+  
+  // Convert Date objects to Firestore Timestamps
+  if (updateData.publishedAt instanceof Date) {
+    updateData.publishedAt = Timestamp.fromDate(updateData.publishedAt);
+  }
+  if (updateData.updatedAt instanceof Date) {
+    updateData.updatedAt = Timestamp.fromDate(updateData.updatedAt);
+  }
+  
+  await updateDoc(docRef, updateData);
+};
+
+export const deleteWork = async (id: string): Promise<void> => {
+  const docRef = doc(db, COLLECTIONS.WORKS, id);
+  await deleteDoc(docRef);
+};
+
+// Get all works for admin (including drafts)
+export const getAllWorksForAdmin = async (): Promise<Work[]> => {
+  const q = query(
+    worksCollection,
+    orderBy('updatedAt', 'desc')
+  );
+
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...convertTimestamps(doc.data())
+  })) as Work[];
+};
+
 // Contacts collection utilities
 export const contactsCollection = collection(db, COLLECTIONS.CONTACTS);
 

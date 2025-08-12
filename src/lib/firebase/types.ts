@@ -5,8 +5,9 @@ export interface Post {
   title: string;
   content: string;
   excerpt?: string;
-  slug: string;
+  slug?: string;
   publishedAt: Date;
+  createdAt: Date;
   updatedAt: Date;
   status: 'draft' | 'published';
   author: string;

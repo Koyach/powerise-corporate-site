@@ -2,8 +2,7 @@
 
 import { useEffect } from 'react';
 import { useAuthStore } from '@/lib/store/authStore';
-import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
+import { Card, Button, LoadingSpinner } from '@/components/ui';
 import Link from 'next/link';
 
 export default function AdminDashboard() {
@@ -17,7 +16,7 @@ export default function AdminDashboard() {
   if (!user || !isAdmin) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <LoadingSpinner size="lg" className="text-blue-600" />
       </div>
     );
   }
@@ -129,7 +128,7 @@ export default function AdminDashboard() {
             クイックアクション
           </h3>
           <div className="space-y-3">
-            <Link href="/admin/news/new">
+            <Link href="/admin/posts/new">
               <Button className="w-full justify-start" variant="outline">
                 <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

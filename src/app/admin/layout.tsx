@@ -4,6 +4,7 @@ import { ReactNode, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/lib/store/authStore';
+import { LoadingScreen } from '@/components/ui';
 
 // Note: metadata は server component でのみ使用可能
 // 管理者ページのメタデータは各ページで個別に設定
@@ -38,11 +39,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
   // ローディング中
   if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
+    return <LoadingScreen message="認証状態を確認中..." />;
   }
 
   // 未認証または非管理者の場合は何も表示しない（リダイレクト中）
@@ -73,7 +70,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             </li>
             <li>
               <Link
-                href="/admin/news"
+                href="/admin/posts"
                 className="flex items-center rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-100"
               >
                 <svg className="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
