@@ -1,12 +1,12 @@
 import { create } from 'zustand';
-import { subscribeWithSelector } from 'zustand/middleware';
+// import { subscribeWithSelector } from 'zustand/middleware';
 import { User } from 'firebase/auth';
 import { auth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from '@/lib/firebase';
 
-interface AuthError {
-  code: string;
-  message: string;
-}
+// interface AuthError {
+//   code: string;
+//   message: string;
+// }
 
 interface AuthState {
   user: User | null;

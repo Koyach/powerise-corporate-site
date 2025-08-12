@@ -1,8 +1,56 @@
 @import "tailwindcss";
 
+/* フォント読み込み */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;600;700&display=swap');
+
+/* CSS変数でカラーパレットを定義 */
+:root {
+  --color-deep-violet: #4C2A85;
+  --color-rich-lavender: #907AD6;
+  --color-gold: #FFD700;
+  --color-charcoal: #333333;
+  --color-off-white: #F0F0F0;
+  --color-dark-slate: #1A1A2E;
+  --color-white-lilac: #F8F7FC;
+}
+
+/* 基本スタイル */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Inter', sans-serif;
-  color: #333333;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--color-charcoal);
   background-color: #ffffff;
   line-height: 1.6;
+  font-weight: 400;
+}
+
+/* 見出しはInterフォントを使用 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+}
+
+/* タイポグラフィスケール（開発定義書準拠） */
+h1 {
+  font-size: 3rem; /* 48px */
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 600;
+}
+
+/* 本文 */
+p, span, div {
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
 }

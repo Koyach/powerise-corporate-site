@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 import { adminDb } from "@/lib/firebase/admin";
 import type { Post } from "@/lib/firebase/types";
 
@@ -57,7 +57,7 @@ export async function updatePost(id: string, formData: PostFormData) {
       ? (formData.publishedAt || now) 
       : undefined;
 
-    const updateData: any = {
+    const updateData: Partial<Post> = {
       title: formData.title,
       content: formData.content,
       excerpt: formData.excerpt || '',

@@ -5,12 +5,14 @@ export default function Home() {
   return (
     <div className="bg-white font-jp">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-deep-violet to-rich-lavender text-white py-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <Heading level="h1" color="default" align="center" className="text-white mb-6">
+      <section className="relative bg-dark-slate text-white py-24 px-4 min-h-[600px] flex items-center">
+        {/* 背景画像オーバーレイ */}
+        <div className="absolute inset-0 bg-dark-slate/80 z-10"></div>
+        <div className="relative z-20 max-w-6xl mx-auto text-center">
+          <Heading level="h1" color="default" align="center" className="text-off-white mb-6">
             POWERISE
           </Heading>
-          <Heading level="h2" color="default" align="center" className="text-white/90 mb-8 font-normal">
+          <Heading level="h2" color="default" align="center" className="text-off-white/90 mb-8 font-normal">
             システム開発・Webサイト制作・デザインで<br />
             お客様のビジネス成長をサポート
           </Heading>
@@ -25,7 +27,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/services">
-              <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-deep-violet">
+              <Button variant="outline" size="lg" className="text-off-white border-off-white hover:bg-off-white hover:text-deep-violet">
                 サービス詳細
               </Button>
             </Link>
@@ -170,13 +172,13 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-charcoal text-white">
+      <section className="py-20 px-4 bg-dark-slate text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <Heading level="h2" color="default" align="center" className="text-white mb-6">
+          <Heading level="h2" color="default" align="center" className="text-off-white mb-6">
             お客様のビジネス成長を<br />
             一緒に実現しませんか？
           </Heading>
-          <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg text-off-white/80 mb-10 max-w-2xl mx-auto">
             プロジェクトのご相談やお見積もりなど、お気軽にお問い合わせください。
             専門スタッフが丁寧にサポートいたします。
           </p>
@@ -187,7 +189,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/works">
-              <Button variant="ghost" size="lg" className="text-white hover:bg-white/10">
+              <Button variant="ghost" size="lg" className="text-off-white hover:bg-off-white/10">
                 制作実績を見る
               </Button>
             </Link>

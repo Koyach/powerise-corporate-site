@@ -3,11 +3,11 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const textareaVariants = cva(
-  "flex min-h-[80px] w-full rounded-md border border-off-white bg-white px-3 py-2 text-sm transition-colors placeholder:text-charcoal/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "flex min-h-[80px] w-full rounded-lg border border-off-white bg-white px-3 py-2 text-sm transition-all duration-200 placeholder:text-charcoal/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:shadow-md disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "focus-visible:ring-deep-violet focus-visible:border-deep-violet",
+        default: "focus-visible:ring-deep-violet focus-visible:border-deep-violet focus-visible:shadow-deep-violet/20",
         error: "border-red-500 focus-visible:ring-red-500 focus-visible:border-red-500",
         success: "border-green-500 focus-visible:ring-green-500 focus-visible:border-green-500",
       },
@@ -26,16 +26,27 @@ const textareaVariants = cva(
 
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    VariantProps<typeof textareaVariants> {}
+    VariantProps<typeof textareaVariants> {
+  error?: string;
+}
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant, size, error, ...props }, ref) => {
+    const textareaVariant = error ? 'error' : variant;
+    
     return (
-      <textarea
-        className={cn(textareaVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
+      <div className="w-full">
+        <textarea
+          className={cn(textareaVariants({ variant: textareaVariant, size, className }))}
+          ref={ref}
+          {...props}
+        />
+        {error && (
+          <p className="mt-1 text-sm text-red-500">
+            {error}
+          </p>
+        )}
+      </div>
     );
   }
 );

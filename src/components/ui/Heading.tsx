@@ -3,16 +3,16 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const headingVariants = cva(
-  "font-semibold text-charcoal tracking-tight",
+  "font-sans text-charcoal tracking-tight",
   {
     variants: {
       level: {
-        h1: "text-4xl md:text-5xl lg:text-6xl font-bold",
-        h2: "text-3xl md:text-4xl lg:text-5xl",
-        h3: "text-2xl md:text-3xl lg:text-4xl",
-        h4: "text-xl md:text-2xl lg:text-3xl",
-        h5: "text-lg md:text-xl lg:text-2xl",
-        h6: "text-base md:text-lg lg:text-xl",
+        h1: "text-5xl font-bold",        // 3rem (48px), 700 (Bold)
+        h2: "text-4xl font-bold",        // 2.25rem (36px), 700 (Bold)  
+        h3: "text-2xl font-semibold",    // 1.5rem (24px), 600 (Semi-bold)
+        h4: "text-xl font-semibold",     // 1.25rem (20px)
+        h5: "text-lg font-semibold",     // 1.125rem (18px)
+        h6: "text-base font-semibold",   // 1rem (16px)
       },
       color: {
         default: "text-charcoal",

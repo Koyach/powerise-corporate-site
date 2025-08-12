@@ -82,7 +82,7 @@ export default function ContactPage() {
           <Heading level="h1" color="primary" align="center" className="mb-4">
             お問い合わせ
           </Heading>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
             システム開発、Webサイト制作、デザインに関するご相談やご質問など、
             お気軽にお問い合わせください。担当者より折り返しご連絡させていただきます。
           </p>
@@ -104,7 +104,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* お名前 */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-charcoal mb-2">
                   お名前 <span className="text-red-500">*</span>
                 </label>
                 <Input
@@ -117,7 +117,7 @@ export default function ContactPage() {
 
               {/* メールアドレス */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-2">
                   メールアドレス <span className="text-red-500">*</span>
                 </label>
                 <Input
@@ -133,7 +133,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* 電話番号 */}
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="phone" className="block text-sm font-medium text-charcoal mb-2">
                   電話番号
                 </label>
                 <Input
@@ -147,7 +147,7 @@ export default function ContactPage() {
 
               {/* 会社名 */}
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="company" className="block text-sm font-medium text-charcoal mb-2">
                   会社名・団体名
                 </label>
                 <Input
@@ -161,7 +161,7 @@ export default function ContactPage() {
 
             {/* 件名 */}
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="subject" className="block text-sm font-medium text-charcoal mb-2">
                 件名 <span className="text-red-500">*</span>
               </label>
               <Input
@@ -174,7 +174,7 @@ export default function ContactPage() {
 
             {/* お問い合わせ内容 */}
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="message" className="block text-sm font-medium text-charcoal mb-2">
                 お問い合わせ内容 <span className="text-red-500">*</span>
               </label>
               <Textarea

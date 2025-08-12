@@ -12,9 +12,9 @@ import {
   where,
   orderBy,
   limit,
-  startAfter,
+  // startAfter,
   DocumentData,
-  QueryDocumentSnapshot,
+  // QueryDocumentSnapshot,
   Timestamp
 } from 'firebase/firestore';
 import { db } from './client';
@@ -143,7 +143,7 @@ export const getWorks = async (
 // Admin-specific work utilities
 export const updateWork = async (id: string, workData: Partial<Work>): Promise<void> => {
   const docRef = doc(db, COLLECTIONS.WORKS, id);
-  const updateData: any = { ...workData };
+  const updateData: Record<string, unknown> = { ...workData };
   
   // Convert Date objects to Firestore Timestamps
   if (updateData.publishedAt instanceof Date) {

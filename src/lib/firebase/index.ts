@@ -3,9 +3,6 @@
 // Client-side Firebase exports
 export { default as app, auth, db, analytics } from './client';
 
-// Admin SDK exports (server-side only)
-export { default as adminApp, adminAuth, adminDb } from './admin';
-
 // Types
 export type { Post, Work, Contact, AdminUser } from './types';
 

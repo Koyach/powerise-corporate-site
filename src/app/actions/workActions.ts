@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 import { adminDb } from "@/lib/firebase/admin";
 import type { Work } from "@/lib/firebase/types";
 
@@ -82,7 +82,7 @@ export async function updateWork(id: string, formData: WorkFormData) {
       .replace(/\s+/g, '-')
       .trim();
 
-    const updateData: any = {
+    const updateData: Partial<Work> = {
       title: formData.title,
       description: formData.description,
       content: formData.content,
