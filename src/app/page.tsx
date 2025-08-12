@@ -1,8 +1,9 @@
+import Link from 'next/link';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Heading } from '@/components/ui';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white font-jp">
+    <div className="bg-white font-jp">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-deep-violet to-rich-lavender text-white py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -18,12 +19,16 @@ export default function Home() {
             お客様のビジネス課題を解決し、成長を加速させるソリューションを提供します。
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button variant="cta" size="lg">
-              お問い合わせ
-            </Button>
-            <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-deep-violet">
-              サービス詳細
-            </Button>
+            <Link href="/contact">
+              <Button variant="cta" size="lg">
+                お問い合わせ
+              </Button>
+            </Link>
+            <Link href="/services">
+              <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-deep-violet">
+                サービス詳細
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -53,7 +58,9 @@ export default function Home() {
                 </p>
               </CardContent>
               <CardFooter className="justify-center">
-                <Button variant="outline" size="sm">詳細を見る</Button>
+                <Link href="/services">
+                  <Button variant="outline" size="sm">詳細を見る</Button>
+                </Link>
               </CardFooter>
             </Card>
 
@@ -71,7 +78,9 @@ export default function Home() {
                 </p>
               </CardContent>
               <CardFooter className="justify-center">
-                <Button variant="outline" size="sm">詳細を見る</Button>
+                <Link href="/services">
+                  <Button variant="outline" size="sm">詳細を見る</Button>
+                </Link>
               </CardFooter>
             </Card>
 
@@ -89,7 +98,9 @@ export default function Home() {
                 </p>
               </CardContent>
               <CardFooter className="justify-center">
-                <Button variant="outline" size="sm">詳細を見る</Button>
+                <Link href="/services">
+                  <Button variant="outline" size="sm">詳細を見る</Button>
+                </Link>
               </CardFooter>
             </Card>
           </div>
@@ -151,7 +162,9 @@ export default function Home() {
           </div>
           
           <div className="text-center mt-10">
-            <Button variant="primary">すべてのお知らせを見る</Button>
+            <Link href="/news">
+              <Button variant="primary">すべてのお知らせを見る</Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -168,12 +181,16 @@ export default function Home() {
             専門スタッフが丁寧にサポートいたします。
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button variant="cta" size="lg">
-              無料相談を申し込む
-            </Button>
-            <Button variant="ghost" size="lg" className="text-white hover:bg-white/10">
-              制作実績を見る
-            </Button>
+            <Link href="/contact">
+              <Button variant="cta" size="lg">
+                無料相談を申し込む
+              </Button>
+            </Link>
+            <Link href="/works">
+              <Button variant="ghost" size="lg" className="text-white hover:bg-white/10">
+                制作実績を見る
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
