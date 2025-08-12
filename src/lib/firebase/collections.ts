@@ -28,7 +28,7 @@ export const COLLECTIONS = {
 } as const;
 
 // Helper function to convert Firestore timestamps to Date objects
-export const convertTimestamps = (data: DocumentData): any => {
+export const convertTimestamps = (data: DocumentData): DocumentData => {
   const converted = { ...data };
   Object.keys(converted).forEach(key => {
     if (converted[key] instanceof Timestamp) {

@@ -30,8 +30,9 @@ export {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  User,
 } from 'firebase/auth';
+
+export type { User } from 'firebase/auth';
 
 export {
   doc,
